@@ -57,7 +57,7 @@ class ProductSpecification(models.Model):
     specifiction or features for the product types.
     """
 
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     name = models.CharField(verbose_name=_("Name"), help_text=_("Required"), max_length=255)
 
     class Meta:
@@ -73,8 +73,8 @@ class Product(models.Model):
     The Product table contining all product items.
     """
 
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
-    category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(
         verbose_name=_("title"),
         help_text=_("Required"),
@@ -132,7 +132,7 @@ class ProductSpecificationValue(models.Model):
     """
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    specification = models.ForeignKey(ProductSpecification, on_delete=models.RESTRICT)
+    specification = models.ForeignKey(ProductSpecification, on_delete=models.CASCADE)
     value = models.CharField(
         verbose_name=_("value"),
         help_text=_("Product specification value (maximum of 255 words"),
